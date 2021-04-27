@@ -14,9 +14,9 @@ pipeline {
             }
             steps {
                 script{
-                    app = docker.build("felipeaneas/train-schedule")
+                    app = docker.build('felipeaneas/train-schedule')
                     app.inside {
-                        sh "echo $(curl localhost:8080)"
+                        sh 'echo $(curl localhost:8080)'
                     }
                 }
             }
@@ -28,8 +28,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("$(env.BUILD_NUMBER)")
-                        app.push("latest")
+                        app.push('$(env.BUILD_NUMBER)')
+                        app.push('latest')
                     }
                 }
             }
